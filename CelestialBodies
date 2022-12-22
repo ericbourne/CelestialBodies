@@ -1,0 +1,322 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.9 (Ubuntu 12.9-2.pgdg20.04+1)
+-- Dumped by pg_dump version 12.9 (Ubuntu 12.9-2.pgdg20.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE universe;
+--
+-- Name: universe; Type: DATABASE; Schema: -; Owner: freecodecamp
+--
+
+CREATE DATABASE universe WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
+
+
+ALTER DATABASE universe OWNER TO freecodecamp;
+
+\connect universe
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: galaxy; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.galaxy (
+    galaxy_id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    age_in_millions_of_years numeric,
+    is_spherical boolean,
+    description text
+);
+
+
+ALTER TABLE public.galaxy OWNER TO freecodecamp;
+
+--
+-- Name: moon; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.moon (
+    moon_id integer NOT NULL,
+    name character varying(30) NOT NULL,
+    description text,
+    age_in_millions_of_years numeric,
+    has_life boolean,
+    planet_id integer NOT NULL
+);
+
+
+ALTER TABLE public.moon OWNER TO freecodecamp;
+
+--
+-- Name: planet; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.planet (
+    name character varying(30) NOT NULL,
+    age_in_millions_of_years numeric,
+    description text,
+    has_life boolean,
+    planet_id integer NOT NULL,
+    star_id integer NOT NULL
+);
+
+
+ALTER TABLE public.planet OWNER TO freecodecamp;
+
+--
+-- Name: random; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.random (
+    name character varying(30) NOT NULL,
+    dummy_value_1 integer,
+    dummy_value_2 integer,
+    random_id integer NOT NULL
+);
+
+
+ALTER TABLE public.random OWNER TO freecodecamp;
+
+--
+-- Name: star; Type: TABLE; Schema: public; Owner: freecodecamp
+--
+
+CREATE TABLE public.star (
+    name character varying(30) NOT NULL,
+    age_in_millions_of_years numeric,
+    description text,
+    distance_from_earth numeric,
+    star_id integer NOT NULL,
+    galaxy_id integer NOT NULL
+);
+
+
+ALTER TABLE public.star OWNER TO freecodecamp;
+
+--
+-- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.galaxy VALUES (1, 'Milky Way', 1361, true, 'home to earth');
+INSERT INTO public.galaxy VALUES (2, 'Andromeda', 101, false, 'home to Sirrah');
+INSERT INTO public.galaxy VALUES (3, 'Whirlpool', 4003, false, 'home to Alkaid');
+INSERT INTO public.galaxy VALUES (4, 'Triangulum', 2000, false, 'home to Beta Trianguli');
+INSERT INTO public.galaxy VALUES (5, 'Sombrero', 1325, false, 'home to 100b stars');
+INSERT INTO public.galaxy VALUES (6, 'Fake', 30, false, 'made up galaxy because I forgot to add 6');
+
+
+--
+-- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.moon VALUES (1, 'Moon', 'the oldest satellite orbiting earth', 4510, false, 1);
+INSERT INTO public.moon VALUES (2, 'FakeMoon1', 'the oldest satellite orbiting a made up planet', 4510, false, 2);
+INSERT INTO public.moon VALUES (3, 'FakeMoon2', 'the oldest satellite orbiting a made up planet', 4510, false, 3);
+INSERT INTO public.moon VALUES (4, 'FakeMoon3', 'the oldest satellite orbiting a made up planet', 4510, false, 4);
+INSERT INTO public.moon VALUES (5, 'FakeMoon4', 'the oldest satellite orbiting a made up planet', 4510, false, 5);
+INSERT INTO public.moon VALUES (6, 'FakeMoon5', 'the oldest satellite orbiting a made up planet', 4510, false, 6);
+INSERT INTO public.moon VALUES (7, 'F-1', 'the oldest satellite orbiting a made up planet', 4510, false, 5);
+INSERT INTO public.moon VALUES (8, 'Q-1', 'the oldest satellite orbiting a made up planet', 2, false, 4);
+INSERT INTO public.moon VALUES (9, 'W-1', 'the oldest satellite orbiting a made up planet', 2, false, 12);
+INSERT INTO public.moon VALUES (10, 'E-3', 'the oldest satellite orbiting a made up planet', 2, false, 11);
+INSERT INTO public.moon VALUES (11, 'R-4', 'the oldest satellite orbiting a made up planet', 2, false, 10);
+INSERT INTO public.moon VALUES (12, 'T-5', 'the oldest satellite orbiting a made up planet', 2, false, 3);
+INSERT INTO public.moon VALUES (13, 'Y-6', 'the oldest satellite orbiting a made up planet', 2, false, 3);
+INSERT INTO public.moon VALUES (15, 'U8-6', 'the oldest satellite orbiting a made up planet', 2, false, 5);
+INSERT INTO public.moon VALUES (16, 'L-36', 'the oldest satellite orbiting a made up planet', 2, false, 7);
+INSERT INTO public.moon VALUES (17, 'B-332', 'the oldest satellite orbiting a made up planet', 2, false, 8);
+INSERT INTO public.moon VALUES (18, 'V-243', 'the oldest satellite orbiting a made up planet', 2, false, 9);
+INSERT INTO public.moon VALUES (14, 'MN-598', 'the oldest satellite orbiting a made up planet', 2, false, 10);
+INSERT INTO public.moon VALUES (19, 'PBK-36', 'the oldest satellite orbiting a made up planet', 2, false, 11);
+INSERT INTO public.moon VALUES (20, 'K-3546', 'the oldest satellite orbiting a made up planet', 2, false, 6);
+
+
+--
+-- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.planet VALUES ('Earth', 4543, 'only known planet to host viable life', true, 1, 1);
+INSERT INTO public.planet VALUES ('iMadeItUp1', 45543, 'fake planet to gain this certification', false, 2, 2);
+INSERT INTO public.planet VALUES ('iMadeItUp2', 45544, 'fake planet to gain this certification', false, 3, 3);
+INSERT INTO public.planet VALUES ('iMadeItUp2', 45545, 'fake planet to gain this certification', false, 4, 4);
+INSERT INTO public.planet VALUES ('iMadeItUp4', 45545, 'fake planet to gain this certification', false, 5, 5);
+INSERT INTO public.planet VALUES ('iMadeItUp5', 21, 'fake planet to gain this certification', false, 6, 6);
+INSERT INTO public.planet VALUES ('iMadeItUp6', 21, 'fake planet to gain this certification', false, 7, 6);
+INSERT INTO public.planet VALUES ('iMadeItUp7', 21, 'fake planet to gain this certification', false, 8, 4);
+INSERT INTO public.planet VALUES ('iMadeItUp8', 21, 'fake planet to gain this certification', false, 9, 3);
+INSERT INTO public.planet VALUES ('iMadeItUp9', 21, 'fake planet to gain this certification', false, 10, 2);
+INSERT INTO public.planet VALUES ('iMadeItUp10', 21, 'fake planet to gain this certification', false, 11, 2);
+INSERT INTO public.planet VALUES ('iMadeItUp11', 21, 'fake planet to gain this certification', false, 12, 5);
+
+
+--
+-- Data for Name: random; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.random VALUES ('hehe', 1, 2, 1);
+INSERT INTO public.random VALUES ('haha', 1, 2, 2);
+INSERT INTO public.random VALUES ('yeah', 1, 2, 3);
+
+
+--
+-- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
+--
+
+INSERT INTO public.star VALUES ('Sun', 4603, 'Center of the Keplar Solar System', 91.4, 1, 1);
+INSERT INTO public.star VALUES ('Sirrah', 50, 'Brightest star in Andromeda', 97.8, 2, 2);
+INSERT INTO public.star VALUES ('Alkaid', 500, 'Brightest star in Whirlpool', 96.9, 3, 3);
+INSERT INTO public.star VALUES ('Beta Trianguli', 1000, 'Brightest star in Triangulum', 565662, 4, 4);
+INSERT INTO public.star VALUES ('Virgo Constellation', 1200, 'Virgo is a constellation, there are no named stars in the Sombrero Galaxy', 45605454, 5, 5);
+INSERT INTO public.star VALUES ('Fake', 1, 'made it up bc I forgot I needed 6', 56405454, 6, 5);
+
+
+--
+-- Name: galaxy galaxy_galaxy_id_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_galaxy_id_key UNIQUE (galaxy_id);
+
+
+--
+-- Name: galaxy galaxy_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_name_key UNIQUE (name);
+
+
+--
+-- Name: galaxy galaxy_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.galaxy
+    ADD CONSTRAINT galaxy_pkey PRIMARY KEY (galaxy_id);
+
+
+--
+-- Name: moon moon_moon_id_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_moon_id_key UNIQUE (moon_id);
+
+
+--
+-- Name: moon moon_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_name_key UNIQUE (name);
+
+
+--
+-- Name: moon moon_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_pkey PRIMARY KEY (moon_id);
+
+
+--
+-- Name: planet planet_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_pkey PRIMARY KEY (planet_id);
+
+
+--
+-- Name: planet planet_planet_id_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_planet_id_key UNIQUE (planet_id);
+
+
+--
+-- Name: random random_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.random
+    ADD CONSTRAINT random_name_key UNIQUE (name);
+
+
+--
+-- Name: random random_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.random
+    ADD CONSTRAINT random_pkey PRIMARY KEY (random_id);
+
+
+--
+-- Name: star star_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_pkey PRIMARY KEY (star_id);
+
+
+--
+-- Name: star star_star_id_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_star_id_key UNIQUE (star_id);
+
+
+--
+-- Name: moon moon_planet_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.moon
+    ADD CONSTRAINT moon_planet_id_fkey FOREIGN KEY (planet_id) REFERENCES public.planet(planet_id);
+
+
+--
+-- Name: planet planet_star_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.planet
+    ADD CONSTRAINT planet_star_id_fkey FOREIGN KEY (star_id) REFERENCES public.star(star_id);
+
+
+--
+-- Name: star star_galaxy_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.star
+    ADD CONSTRAINT star_galaxy_id_fkey FOREIGN KEY (galaxy_id) REFERENCES public.galaxy(galaxy_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
